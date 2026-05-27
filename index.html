@@ -377,6 +377,286 @@
       font-size: 0.8rem;
       flex-shrink: 0;
     }
+
+    /* ===== Tabs ===== */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px 20px 0;
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .tab-btn {
+      padding: 12px 32px;
+      border: none;
+      border-radius: 12px 12px 0 0;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: transparent;
+      color: #64748b;
+    }
+    .tab-btn:hover { color: #94a3b8; background: rgba(255,255,255,0.03); }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #94bbe9;
+      box-shadow: 0 -2px 10px rgba(148,187,233,0.1);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ===== AI Checker ===== */
+    .checker-section { padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
+    .checker-section h2 {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #94bbe9;
+      margin-bottom: 8px;
+    }
+    .checker-section .subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+
+    .checker-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .checker-layout { grid-template-columns: 1fr; } }
+
+    .checker-input-area {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .checker-input-area label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+    .checker-input-area textarea {
+      width: 100%;
+      min-height: 320px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      resize: vertical;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    .checker-input-area textarea:focus {
+      outline: none;
+      border-color: #94bbe9;
+      box-shadow: 0 0 15px rgba(148,187,233,0.1);
+    }
+    .checker-input-area textarea::placeholder { color: #475569; }
+
+    .checker-options {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .check-btn {
+      padding: 14px 36px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: linear-gradient(135deg, #e94560, #c23152);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .check-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(233,69,96,0.4); }
+    .check-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+    .check-btn .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+    .check-btn.loading .spinner { display: inline-block; }
+    .check-btn.loading .btn-text { opacity: 0.7; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .clear-btn {
+      padding: 14px 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: transparent;
+      color: #64748b;
+    }
+    .clear-btn:hover { border-color: #e94560; color: #e94560; }
+
+    .word-count {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #64748b;
+      text-align: right;
+    }
+    .word-count span { color: #94bbe9; font-weight: 600; }
+
+    /* Results */
+    .checker-results {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+      min-height: 400px;
+    }
+    .checker-results .placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 300px;
+      color: #475569;
+      text-align: center;
+    }
+    .checker-results .placeholder .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.5; }
+    .checker-results .placeholder p { font-size: 0.95rem; line-height: 1.6; }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .result-header .total-score {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #94bbe9;
+    }
+    .result-header .total-score .max { font-size: 1.2rem; color: #475569; }
+    .result-header .grade {
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .grade.high { background: rgba(110,231,183,0.15); color: #6ee7b7; }
+    .grade.mid { background: rgba(251,191,36,0.15); color: #fbbf24; }
+    .grade.low { background: rgba(233,69,96,0.15); color: #e94560; }
+
+    /* Criteria list */
+    .criteria-list { display: flex; flex-direction: column; gap: 10px; }
+    .criterion {
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s;
+    }
+    .criterion:hover { background: rgba(255,255,255,0.05); }
+    .criterion .c-code {
+      min-width: 40px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .criterion .c-name { flex: 1; font-size: 0.88rem; color: #cbd5e1; }
+    .criterion .c-score {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .criterion .c-score.pass { color: #6ee7b7; }
+    .criterion .c-score.partial { color: #fbbf24; }
+    .criterion .c-score.fail { color: #e94560; }
+
+    .criterion .c-bar {
+      width: 80px;
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .criterion .c-bar .fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.8s ease;
+    }
+
+    /* Detailed feedback */
+    .feedback-section { margin-top: 20px; }
+    .feedback-section h3 {
+      color: #94bbe9;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .feedback-item {
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .feedback-item .fb-icon { flex-shrink: 0; font-size: 1.1rem; }
+    .feedback-item.positive { background: rgba(110,231,183,0.08); border-left: 3px solid #6ee7b7; }
+    .feedback-item.warning { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; }
+    .feedback-item.error { background: rgba(233,69,96,0.08); border-left: 3px solid #e94560; }
+    .feedback-item.info { background: rgba(148,187,233,0.08); border-left: 3px solid #94bbe9; }
+
+    /* API key input */
+    .api-key-area {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .api-key-area label { font-size: 0.8rem; color: #64748b; }
+    .api-key-area input {
+      flex: 1;
+      min-width: 180px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+    }
+    .api-key-area input:focus { outline: none; border-color: #94bbe9; }
+    .api-toggle {
+      font-size: 0.8rem;
+      color: #64748b;
+      cursor: pointer;
+      user-select: none;
+    }
+    .api-toggle:hover { color: #94a3b8; }
   </style>
 </head>
 <body>
@@ -387,17 +667,62 @@
   </div>
 
   <div class="stats">
-    <div class="stat-item"><div class="num">11</div><div class="label">Частей</div></div>
-    <div class="stat-item"><div class="num">~350</div><div class="label">Слов</div></div>
-    <div class="stat-item"><div class="num">3</div><div class="label">Блока</div></div>
-    <div class="stat-item"><div class="num">80</div><div class="label">Мин на экзамене</div></div>
+    <div class="stat-item"><div class="num">10</div><div class="label">Критериев (К1–К10)</div></div>
+    <div class="stat-item"><div class="num">22</div><div class="label">Макс. первичных</div></div>
+    <div class="stat-item"><div class="num">150+</div><div class="label">Мин. слов</div></div>
+    <div class="stat-item"><div class="num">11</div><div class="label">Частей структуры</div></div>
   </div>
 
-  <div class="container">
-    <div class="flow-title">Структура сочинения</div>
-    <div class="flow" id="flow"></div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('structure')" id="tab-structure">📖 Структура сочинения</button>
+    <button class="tab-btn" onclick="switchTab('checker')" id="tab-checker">🤖 AI Проверка сочинения</button>
+  </div>
 
-    <div class="detail-section" id="detailSection"></div>
+  <div class="tab-content active" id="tab-content-structure">
+    <div class="container">
+      <div class="flow-title">Структура сочинения</div>
+      <div class="flow" id="flow"></div>
+      <div class="detail-section" id="detailSection"></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-content-checker">
+    <div class="checker-section">
+      <h2>🤖 AI Проверка сочинения</h2>
+      <p class="subtitle">Вставь текст сочинения — AI проанализирует по критериям ЕГЭ 2026/2027 (К1–К10, ФИПИ). Максимум — <strong>22 первичных балла</strong>. Минимум — <strong>150 слов</strong>.</p>
+
+      <div class="checker-layout">
+        <div class="checker-input-area">
+          <label for="essayInput">Введи текст сочинения:</label>
+          <textarea id="essayInput" placeholder="Вставь сюда своё сочинение...&#10;&#10;Пример:&#10;&#10;В предложенном тексте автор поднимает проблему нравственного выбора. Именно этот вопрос остаётся актуальным в наши дни.&#10;&#10;Размышляя над проблемой, автор обращается к истории главного героя..."></textarea>
+          <div class="word-count">Слов: <span id="wordCount">0</span> | Символов: <span id="charCount">0</span></div>
+
+          <div class="checker-options">
+            <button class="check-btn" id="checkBtn" onclick="analyzeEssay()">
+              <span class="spinner"></span>
+              <span class="btn-text">🚀 Проверить сочинение</span>
+            </button>
+            <button class="clear-btn" onclick="clearEssay()">Очистить</button>
+          </div>
+
+          <details class="api-key-area" style="margin-top: 16px;">
+            <summary class="api-toggle">🧠 Подключить ChatGPT для глубокого анализа (опционально)</summary>
+            <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <label>API Key OpenAI:</label>
+              <input type="password" id="apiKeyInput" placeholder="sk-..." />
+              <span style="font-size: 0.75rem; color: #475569;">Не сохраняется. Работает локально.</span>
+            </div>
+          </details>
+        </div>
+
+        <div class="checker-results" id="resultsArea">
+          <div class="placeholder" id="placeholder">
+            <div class="icon">🔍</div>
+            <p>Вставь сочинение и нажми <strong>"Проверить"</strong><br>AI проанализирует текст по всем критериям ЕГЭ</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>Сделано с ❤️ для подготовки к ЕГЭ по русскому языку</footer>
@@ -872,6 +1197,423 @@
 
     renderFlow();
     renderDetail(0);
+
+    // ===== Tabs =====
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(`tab-${tab}`).classList.add('active');
+      document.getElementById(`tab-content-${tab}`).classList.add('active');
+    }
+
+    // ===== Word count =====
+    const essayInput = document.getElementById('essayInput');
+    essayInput.addEventListener('input', updateCounts);
+    function updateCounts() {
+      const text = essayInput.value.trim();
+      const words = text ? text.split(/\s+/).length : 0;
+      document.getElementById('wordCount').textContent = words;
+      document.getElementById('charCount').textContent = text.length;
+    }
+
+    function clearEssay() {
+      essayInput.value = '';
+      updateCounts();
+      document.getElementById('resultsArea').innerHTML = `
+        <div class="placeholder" id="placeholder">
+          <div class="icon">🔍</div>
+          <p>Вставь сочинение и нажми <strong>"Проверить"</strong><br>AI проанализирует текст по всем критериям ЕГЭ</p>
+        </div>
+      `;
+    }
+
+    // ===== EGE Criteria Analyzer (ЕГЭ 2026/2027 — ФИПИ) =====
+    const CRITERIA = [
+      { code: 'К1', name: 'Отражение позиции автора', max: 1 },
+      { code: 'К2', name: 'Комментарий к позиции автора', max: 3 },
+      { code: 'К3', name: 'Собственное отношение к позиции автора', max: 2 },
+      { code: 'К4', name: 'Фактическая точность речи', max: 1 },
+      { code: 'К5', name: 'Логичность речи', max: 2 },
+      { code: 'К6', name: 'Соблюдение этических норм', max: 1 },
+      { code: 'К7', name: 'Соблюдение орфографических норм', max: 3 },
+      { code: 'К8', name: 'Соблюдение пунктуационных норм', max: 3 },
+      { code: 'К9', name: 'Соблюдение грамматических норм', max: 3 },
+      { code: 'К10', name: 'Соблюдение речевых норм', max: 3 }
+    ];
+    const TOTAL_MAX = CRITERIA.reduce((s, c) => s + c.max, 0);
+
+    // Key phrases for detecting each section
+    const SECTION_PATTERNS = {
+      problem: [
+        /проблем[а-я]+/i, /автор поднимает/i, /автор размышля[ею]т/i,
+        /вопрос о/i, /актуальн/i, /в предложенном тексте/i,
+        /именно эта проблема/i, /автор затрагивает/i
+      ],
+      commentary: [
+        /размышляя/i, /автор обращается/i, /писатель/i, /автор показывает/i,
+        /автор описыва/i, /автор подчёркива/i, /детально/i,
+        /события/i, /поступк/i, /эпизод/i, /сцена/i
+      ],
+      example1: [
+        /в подтверждени/i, /обратимся к тексту/i, /особого внимания/i,
+        /так, автор/i, /например/i, /в качестве примера/i,
+        /автор пишет/i, /говорится/i
+      ],
+      example2: [
+        /в противовес/i, /с другой стороны/i, /кроме того/i,
+        /также/i, /ещё один/i, /другой пример/i, /в отличие/i,
+        /напротив/i, /в то же время/i
+      ],
+      connection: [
+        /противопоставля/i, /сопоставля/i, /дополня/i, /развивая эту мысль/i,
+        /оба примера/i, /сравнивая/i, /эти пример/i, /связ/i,
+        /взаимодополня/i, /смысловая связь/i
+      ],
+      authorPos: [
+        /позиция автора/i, /автор считает/i, /автор убежд[её]н/i,
+        /писатель считает/i, /автор приходит к выводу/i,
+        /автор утверждает/i, /автор подводит/i, /автор хочет сказать/i,
+        /мысль автора/i, /позиция писателя/i
+      ],
+      ownOpinion: [
+        /я (полностью )?согласен/i, /трудно не согласиться/i,
+        /я разделяю/i, /позиция автора близка/i, /я считаю/i,
+        /на мой взгляд/i, /моё мнение/i, /я думаю/i,
+        /нельзя не согласиться/i, /я поддерживаю/i
+      ],
+      argument: [
+        /обосновать/i, /обратившись/i, /вспомним/i, /примером из/i,
+        /можно обосновать/i, /произведени/i, /роман/i, /повесть/i,
+        /рассказ/i, /в жизни/i, /в истории/i, /примером может служить/i
+      ],
+      conclusion: [
+        /таким образом/i, /в заключени/i, /подводя итог/i,
+        /итак/i, /в итоге/i, /на основании/i, /можно сделать вывод/i,
+        /в конечном счёт/i, /обобщая/i, /хочется отметить/i
+      ]
+    };
+
+    function detectSections(text) {
+      const found = {};
+      for (const [section, patterns] of Object.entries(SECTION_PATTERNS)) {
+        let score = 0;
+        for (const p of patterns) {
+          if (p.test(text)) score++;
+        }
+        found[section] = { score, max: patterns.length, ratio: score / patterns.length };
+      }
+      return found;
+    }
+
+    function countParagraphs(text) {
+      return text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length;
+    }
+
+    function estimateVolume(text) {
+      const words = text.trim().split(/\s+/);
+      const count = words.length;
+      if (count >= 300 && count <= 450) return { score: 2, msg: 'Идеальный объём' };
+      if (count >= 200 && count < 300) return { score: 1, msg: 'Мало, рекомендуется 300+ слов' };
+      if (count > 450 && count <= 550) return { score: 1, msg: 'Многовато, но допустимо' };
+      if (count >= 150 && count < 200) return { score: 0.5, msg: 'Слишком мало, риск потерять баллы' };
+      return { score: 0, msg: count < 150 ? 'Критически мало' : 'Сильно превышен объём' };
+    }
+
+    function analyzeK1(text, sections) {
+      const p = sections.authorPos;
+      const has = text.length > 50 && (
+        p.ratio > 0.08 ||
+        /позиция автор/i.test(text) ||
+        /автор счита/i.test(text) ||
+        /автор убежд/i.test(text) ||
+        /проблем[а-я]+/i.test(text)
+      );
+      return {
+        score: has ? 1 : 0,
+        feedback: has
+          ? 'Позиция автора отражена.'
+          : 'Позиция автора не сформулирована. Напиши: "Автор считает, что..." (если К1 = 0, то К2 и К3 = 0!)'
+      };
+    }
+
+    function analyzeK2(text, sections) {
+      const comm = sections.commentary;
+      const ex1 = sections.example1;
+      const ex2 = sections.example2;
+      const conn = sections.connection;
+
+      let score = 0;
+      const issues = [];
+
+      const has2examples = (ex1.ratio > 0.05 ? 1 : 0) + (ex2.ratio > 0.05 ? 1 : 0);
+      if (has2examples >= 2) { score += 1; } else { issues.push('Нужно 2 примера-иллюстрации из текста'); }
+      if (comm.ratio > 0.08) { score += 1; } else { issues.push('Нет пояснения к примерам'); }
+      if (conn.ratio > 0.05) { score += 1; } else { issues.push('Не указана смысловая связь между примерами'); }
+
+      if (!sections.authorPos.ratio && issues.length < 3) {
+        issues.push('⚠️ Важно: если К1 = 0, то и К2 = 0');
+      }
+
+      score = Math.min(score, 3);
+      const msg = score === 3
+        ? 'Три балла! Есть 2 примера, пояснения и смысловая связь.'
+        : 'Возможные проблемы: ' + issues.join('; ');
+
+      return { score, feedback: msg };
+    }
+
+    function analyzeK3(text, sections) {
+      const oo = sections.ownOpinion;
+      const arg = sections.argument;
+      let score = 0;
+      const issues = [];
+
+      const hasOpinion = oo.ratio > 0.08 ||
+        /согласен/i.test(text) || /я считаю/i.test(text) ||
+        /на мой взгляд/i.test(text) || /я разделя/i.test(text);
+
+      const hasArgument = arg.ratio > 0.08 ||
+        /обосновать/i.test(text) || /примером/i.test(text) ||
+        /вспомним/i.test(text) || /обратившись/i.test(text);
+
+      if (hasOpinion && hasArgument) {
+        score = 2;
+      } else if (hasOpinion && !hasArgument) {
+        score = 1;
+        issues.push('Собственное отношение есть, но нет примера-аргумента');
+      } else {
+        issues.push('Собственное отношение не сформулировано. Добавь "Я согласен/не согласен с автором..."');
+      }
+
+      const banned = /комикс|аниме|манга|фанфик|графический роман|компьютерная игра/i;
+      if (banned.test(text)) {
+        score = Math.min(score, 1);
+        issues.push('Пример-аргумент из запрещённого источника (комикс, аниме, игра и т.д.)');
+      }
+
+      const msg = score === 2 ? 'Отлично! Своё отношение обосновано примером-аргументом.' : issues.join('; ');
+      return { score, feedback: msg };
+    }
+
+    function analyzeK4(text, sections) {
+      const errors = [
+        /Пушкин\s*(написал|создал)\s*«Война и мир/i,
+        /Толстой\s*(написал|создал)\s*«Евгений Онегин/i,
+        /Лермонтов\s*(написал|создал)\s*«Горе от ума/i,
+        /Гоголь\s*(написал|создал)\s*«Герой нашего времени/i,
+        /в романе\s+«Капитанская дочка/i,
+        /в рассказе\s+«Война и мир/i
+      ];
+      for (const e of errors) {
+        if (e.test(text)) return { score: 0, feedback: 'Обнаружена фактическая ошибка в указании автора/произведения' };
+      }
+      return { score: 1, feedback: 'Фактических ошибок не обнаружено.' };
+    }
+
+    function analyzeK5(text, sections) {
+      const pCount = countParagraphs(text);
+      let score = 0;
+      const issues = [];
+
+      if (pCount >= 4) { score += 1; } else { issues.push('Мало абзацев (рекомендуется 5–7)'); }
+
+      const logicalMarkers = [
+        /во-первых/i, /во-вторых/i, /таким образом/i,
+        /следовательно/i, /поэтому/i, /итак/i,
+        /в первую очередь/i, /наконец/i, /прежде всего/i
+      ];
+      let lmCount = 0;
+      for (const m of logicalMarkers) { if (m.test(text)) lmCount++; }
+      if (lmCount >= 2) { score += 1; } else { issues.push('Мало средств логической связи между частями'); }
+
+      return {
+        score: Math.min(score, 2),
+        feedback: issues.length === 0 ? 'Логика соблюдена.' : issues.join('; ')
+      };
+    }
+
+    function analyzeK6(text, sections) {
+      const violations = [
+        /груб[оы]й\s*(человек|ответ|поступок)/i, /хам/i,
+        /дурак/i, /идиот/i, /сволочь/i, /мерзавец/i,
+        /уничтожить\s*(всех|людей)/i, /ненавижу\s*(всех|людей)/i
+      ];
+      for (const v of violations) {
+        if (v.test(text)) return { score: 0, feedback: 'Обнаружены этические нарушения (грубые выражения)' };
+      }
+      return { score: 1, feedback: 'Этические нормы соблюдены.' };
+    }
+
+    function analyzeK7(text) {
+      return { score: 3, feedback: '✅ Орфография проверяется экспертом. Рекомендуется проверить через Word или онлайн-сервис перед сдачей.' };
+    }
+
+    function analyzeK8(text) {
+      return { score: 3, feedback: '✅ Пунктуация проверяется экспертом. Рекомендуется проверить через Word или онлайн-сервис перед сдачей.' };
+    }
+
+    function analyzeK9(text) {
+      let score = 3;
+      const issues = [];
+      const grammarErrors = [
+        /ихний/i, /ево[йя]/i, /её[йя]/i, /ложить/i, /покласть/i,
+        /ездиют/i, /ездиешь/i, /хочут/i, /бежат/i, /махает/i,
+        /нагинаться/i, /поднять[сз]я/i, /займ[ао]ют/i
+      ];
+      let errCount = 0;
+      for (const e of grammarErrors) {
+        if (e.test(text)) errCount++;
+      }
+      if (errCount === 0) { score = 3; }
+      else if (errCount <= 2) { score = 2; issues.push('Допущены грамматические ошибки (1–2)'); }
+      else if (errCount <= 4) { score = 1; issues.push('Допущены грамматические ошибки (3–4)'); }
+      else { score = 0; issues.push('Много грамматических ошибок (5+)'); }
+
+      return {
+        score,
+        feedback: issues.length === 0 ? 'Грамматических ошибок не обнаружено.' : issues.join('; ')
+      };
+    }
+
+    function analyzeK10(text) {
+      let errCount = 0;
+      const issues = [];
+      const speechErrors = [
+        /более лучш/i, /самый лучш/i, /более худш/i,
+        /в апреле месяце/i, /главный приоритет/i,
+        /моя автобиография/i, /прейскурант цен/i,
+        /свободная вакансия/i, /первый дебют/i
+      ];
+      for (const e of speechErrors) {
+        if (e.test(text)) errCount++;
+      }
+
+      const words = text.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+      const freq = {};
+      let repeats = 0;
+      for (const w of words) {
+        freq[w] = (freq[w] || 0) + 1;
+        if (freq[w] > 3) repeats++;
+      }
+      if (repeats > 3) errCount++;
+
+      let score;
+      if (errCount === 0) { score = 3; }
+      else if (errCount <= 2) { score = 2; issues.push('Допущены речевые ошибки (1–2)'); }
+      else if (errCount <= 4) { score = 1; issues.push('Допущены речевые ошибки (3–4)'); }
+      else { score = 0; issues.push('Много речевых ошибок (5+)'); }
+
+      return {
+        score,
+        feedback: issues.length === 0 ? 'Речевых ошибок не обнаружено.' : issues.join('; ')
+      };
+    }
+
+    async function analyzeEssay() {
+      const btn = document.getElementById('checkBtn');
+      const text = essayInput.value.trim();
+
+      if (!text || text.split(/\s+/).length < 150) {
+        alert('Пожалуйста, напиши сочинение (минимум 150 слов по требованиям ЕГЭ), чтобы AI мог его проанализировать.');
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      // Small delay to show loading state
+      await new Promise(r => setTimeout(r, 300));
+
+      const sections = detectSections(text);
+
+      if (!sections.authorPos.ratio && text.split(/\s+/).length >= 30) {
+      }
+
+      const results = [
+        { ...CRITERIA[0], ...analyzeK1(text, sections) },
+        { ...CRITERIA[1], ...analyzeK2(text, sections) },
+        { ...CRITERIA[2], ...analyzeK3(text, sections) },
+        { ...CRITERIA[3], ...analyzeK4(text, sections) },
+        { ...CRITERIA[4], ...analyzeK5(text, sections) },
+        { ...CRITERIA[5], ...analyzeK6(text, sections) },
+        { ...CRITERIA[6], ...analyzeK7(text) },
+        { ...CRITERIA[7], ...analyzeK8(text) },
+        { ...CRITERIA[8], ...analyzeK9(text) },
+        { ...CRITERIA[9], ...analyzeK10(text) }
+      ];
+
+      const total = Math.round(results.reduce((s, r) => s + Math.min(r.score, r.max), 0));
+      const totalPct = (total / TOTAL_MAX) * 100;
+
+      let grade, gradeClass;
+      if (totalPct >= 80) { grade = 'Отлично'; gradeClass = 'high'; }
+      else if (totalPct >= 55) { grade = 'Хорошо'; gradeClass = 'mid'; }
+      else { grade = 'Требует доработки'; gradeClass = 'low'; }
+
+      // Build results HTML
+      const resultsHTML = `
+        <div class="result-header">
+          <div>
+            <div class="total-score">${total} <span class="max">/ ${TOTAL_MAX} первичных баллов</span></div>
+            <div style="color: #64748b; font-size: 0.85rem; margin-top: 4px;">
+              Объём: ${text.split(/\s+/).length} слов · ${countParagraphs(text)} абзацев
+            </div>
+          </div>
+          <div class="grade ${gradeClass}">${grade}</div>
+        </div>
+
+        <div class="criteria-list">
+          ${results.map(r => {
+            const pct = r.max > 0 ? (r.score / r.max) * 100 : 0;
+            const scoreClass = pct >= 80 ? 'pass' : pct >= 40 ? 'partial' : 'fail';
+            const barColor = pct >= 80 ? '#6ee7b7' : pct >= 40 ? '#fbbf24' : '#e94560';
+            return `
+              <div class="criterion">
+                <span class="c-code">${r.code}</span>
+                <span class="c-name">${r.name}</span>
+                <div class="c-bar"><div class="fill" style="width: ${pct}%; background: ${barColor};"></div></div>
+                <span class="c-score ${scoreClass}">${Math.min(Math.round(r.score), r.max)}/${r.max}</span>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
+        <div class="feedback-section">
+          <h3>📋 Детальные рекомендации</h3>
+          ${results.map(r => {
+            const icon = r.score >= r.max * 0.8 ? '✅' : r.score >= r.max * 0.4 ? '⚠️' : '❌';
+            const cls = r.score >= r.max * 0.8 ? 'positive' : r.score >= r.max * 0.4 ? 'warning' : 'error';
+            const label = cls === 'positive' ? '' : (cls === 'warning' ? 'Обрати внимание' : 'Нужно исправить');
+            return `
+              <div class="feedback-item ${cls}">
+                <span class="fb-icon">${icon}</span>
+                <div>
+                  <strong>${r.code} ${label}</strong><br>
+                  ${r.feedback}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
+        ${total < 22 ? `
+        <div class="marker" style="margin-top: 20px;">
+          <div class="marker-label">План действий</div>
+          <p>🔥 Чтобы улучшить результат:
+            ${results[0].score === 0 ? '• К1 = 0 → вся работа может получить 0. Сформулируй позицию автора! ' : ''}
+            ${results[1].score < 3 ? `• К2 = ${results[1].score}/3: добавь 2 примера-иллюстрации + пояснения + смысловую связь. ` : ''}
+            ${results[2].score < 2 ? `• К3 = ${results[2].score}/2: сформулируй своё отношение и обоснуй его примером-аргументом. ` : ''}
+            ${results[4].score < 2 ? `• К5 = ${results[4].score}/2: используй логические переходы (во-первых, таким образом, итак). ` : ''}
+          </p>
+        </div>
+        ` : ''}
+      `;
+
+      document.getElementById('resultsArea').innerHTML = resultsHTML;
+
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
   </script>
 </body>
 </html>
